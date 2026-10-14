@@ -1,0 +1,1279 @@
+openapi: 3.0.3
+info:
+  contact:
+    email: api-support@example.com
+    name: Inventory API Support
+  description: "Sample API specification for managing products, warehouses, stock,\
+    \ orders and shipments. Uses example data and a placeholder base URL."
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  title: Inventory and Order Management API
+  version: 2.0.0
+servers:
+- description: Placeholder server; replace with actual endpoint
+  url: https://api.example.com/v1
+security:
+- bearerAuth: []
+tags:
+- description: Authenticate API consumers and obtain access tokens.
+  name: Authentication
+- description: "Create, list, update and manage products in the catalog."
+  name: Products
+- description: Register and retrieve warehouses for inventory storage.
+  name: Warehouses
+- description: Read stock availability and record adjustments.
+  name: Inventory
+- description: "Create, view and cancel customer orders."
+  name: Orders
+- description: "Create shipments, check their details and update statuses."
+  name: Shipments
+paths:
+  /auth/login:
+    post:
+      description: Authenticates a user with their email address and password and
+        returns a bearer access token for protected API operations. This endpoint
+        is public and does not require a token.
+      operationId: login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginRequest"
+        description: Request payload for create access token.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthToken"
+          description: Login successful (HTTP 200).
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Invalid request (HTTP 400).
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Unauthorized (HTTP 401).
+      security: []
+      summary: Create access token
+      tags:
+      - Authentication
+      x-content-type: application/json
+      x-accepts: application/json
+      x-tags:
+      - tag: Authentication
+  /products:
+    get:
+      description: List products. Retrieves the relevant resource using the supplied
+        inputs. Requires a bearer access token unless this operation explicitly allows
+        anonymous access. Returns the documented HTTP status codes and response schemas.
+      operationId: listProducts
+      parameters:
+      - description: "Optional filter or selection value: search."
+        explode: true
+        in: query
+        name: search
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "Optional filter or selection value: category."
+        explode: true
+        in: query
+        name: category
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "Optional filter or selection value: limit."
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/Product"
+                type: array
+          description: Products retrieved (HTTP 200).
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Invalid request (HTTP 400).
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Unauthorized (HTTP 401).
+      security:
+      - bearerAuth: []
+      summary: List products
+      tags:
+      - Products
+      x-accepts: application/json
+      x-tags:
+      - tag: Products
+    post:
+      description: Create product. Submits the relevant resource using the supplied
+        inputs. Requires a bearer access token unless this operation explicitly allows
+        anonymous access. Returns the documented HTTP status codes and response schemas.
+      operationId: createProduct
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ProductInput"
+        description: Request payload for create product.
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+          description: Product created (HTTP 201).
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Invalid request (HTTP 400).
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Unauthorized (HTTP 401).
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Conflict (HTTP 409).
+      security:
+      - bearerAuth: []
+      summary: Create product
+      tags:
+      - Products
+      x-content-type: application/json
+      x-accepts: application/json
+      x-tags:
+      - tag: Products
+  /products/{productId}:
+    delete:
+      description: Delete product. Deletes the relevant resource using the supplied
+        inputs. Requires a bearer access token unless this operation explicitly allows
+        anonymous access. Returns the documented HTTP status codes and response schemas.
+      operationId: deleteProduct
+      parameters:
+      - description: "Required resource identifier: productId."
+        explode: false
+        in: path
+        name: productId
+        required: true
+        schema:
+          minimum: 1
+          type: integer
+        style: simple
+      responses:
+        "204":
+          description: Product deleted (HTTP 204).
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Unauthorized (HTTP 401).
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Resource not found
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Conflict (HTTP 409).
+      security:
+      - bearerAuth: []
+      summary: Delete product
+      tags:
+      - Products
+      x-accepts: application/json
+      x-tags:
+      - tag: Products
+    get:
+      description: Get product by ID. Retrieves the relevant resource using the supplied
+        inputs. Requires a bearer access token unless this operation explicitly allows
+        anonymous access. Returns the documented HTTP status codes and response schemas.
+      operationId: getProduct
+      parameters:
+      - description: "Required resource identifier: productId."
+        explode: false
+        in: path
+        name: productId
+        required: true
+        schema:
+          minimum: 1
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+          description: Product retrieved (HTTP 200).
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Unauthorized (HTTP 401).
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Resource not found
+      security:
+      - bearerAuth: []
+      summary: Get product by ID
+      tags:
+      - Products
+      x-accepts: application/json
+      x-tags:
+      - tag: Products
+    put:
+      description: Replace product. Replaces the relevant resource using the supplied
+        inputs. Requires a bearer access token unless this operation explicitly allows
+        anonymous access. Returns the documented HTTP status codes and response schemas.
+      operationId: updateProduct
+      parameters:
+      - description: "Required resource identifier: productId."
+        explode: false
+        in: path
+        name: productId
+        required: true
+        schema:
+          minimum: 1
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ProductInput"
+        description: Request payload for replace product.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+          description: Product updated (HTTP 200).
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Invalid request (HTTP 400).
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Unauthorized (HTTP 401).
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Resource not found
+      security:
+      - bearerAuth: []
+      summary: Replace product
+      tags:
+      - Products
+      x-content-type: application/json
+      x-accepts: application/json
+      x-tags:
+      - tag: Products
+  /warehouses:
+    get:
+      description: List warehouses. Retrieves the relevant resource using the supplied
+        inputs. Requires a bearer access token unless this operation explicitly allows
+        anonymous access. Returns the documented HTTP status codes and response schemas.
+      operationId: listWarehouses
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/Warehouse"
+                type: array
+          description: Warehouses retrieved (HTTP 200).
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Unauthorized (HTTP 401).
+      security:
+      - bearerAuth: []
+      summary: List warehouses
+      tags:
+      - Warehouses
+      x-accepts: application/json
+      x-tags:
+      - tag: Warehouses
+    post:
+      description: Create warehouse. Submits the relevant resource using the supplied
+        inputs. Requires a bearer access token unless this operation explicitly allows
+        anonymous access. Returns the documented HTTP status codes and response schemas.
+      operationId: createWarehouse
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/WarehouseInput"
+        description: Request payload for create warehouse.
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Warehouse"
+          description: Warehouse created (HTTP 201).
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Invalid request (HTTP 400).
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Unauthorized (HTTP 401).
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Conflict (HTTP 409).
+      security:
+      - bearerAuth: []
+      summary: Create warehouse
+      tags:
+      - Warehouses
+      x-content-type: application/json
+      x-accepts: application/json
+      x-tags:
+      - tag: Warehouses
+  /warehouses/{warehouseId}:
+    get:
+      description: Get warehouse. Retrieves the relevant resource using the supplied
+        inputs. Requires a bearer access token unless this operation explicitly allows
+        anonymous access. Returns the documented HTTP status codes and response schemas.
+      operationId: getWarehouse
+      parameters:
+      - description: "Required resource identifier: warehouseId."
+        explode: false
+        in: path
+        name: warehouseId
+        required: true
+        schema:
+          minimum: 1
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Warehouse"
+          description: Warehouse retrieved (HTTP 200).
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Unauthorized (HTTP 401).
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Resource not found
+      security:
+      - bearerAuth: []
+      summary: Get warehouse
+      tags:
+      - Warehouses
+      x-accepts: application/json
+      x-tags:
+      - tag: Warehouses
+  /inventory:
+    get:
+      description: List stock levels. Retrieves the relevant resource using the supplied
+        inputs. Requires a bearer access token unless this operation explicitly allows
+        anonymous access. Returns the documented HTTP status codes and response schemas.
+      operationId: listInventory
+      parameters:
+      - description: "Optional filter or selection value: warehouseId."
+        explode: true
+        in: query
+        name: warehouseId
+        required: false
+        schema:
+          type: integer
+        style: form
+      - description: "Optional filter or selection value: productId."
+        explode: true
+        in: query
+        name: productId
+        required: false
+        schema:
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/StockLevel"
+                type: array
+          description: Inventory retrieved (HTTP 200).
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Invalid request (HTTP 400).
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Unauthorized (HTTP 401).
+      security:
+      - bearerAuth: []
+      summary: List stock levels
+      tags:
+      - Inventory
+      x-accepts: application/json
+      x-tags:
+      - tag: Inventory
+  /inventory/adjustments:
+    post:
+      description: Adjust product stock. Submits the relevant resource using the supplied
+        inputs. Requires a bearer access token unless this operation explicitly allows
+        anonymous access. Returns the documented HTTP status codes and response schemas.
+      operationId: adjustInventory
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/StockAdjustmentInput"
+        description: Request payload for adjust product stock.
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StockAdjustment"
+          description: Stock adjustment recorded
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Invalid request (HTTP 400).
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Unauthorized (HTTP 401).
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Resource not found
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Conflict (HTTP 409).
+      security:
+      - bearerAuth: []
+      summary: Adjust product stock
+      tags:
+      - Inventory
+      x-content-type: application/json
+      x-accepts: application/json
+      x-tags:
+      - tag: Inventory
+  /orders:
+    get:
+      description: List orders. Retrieves the relevant resource using the supplied
+        inputs. Requires a bearer access token unless this operation explicitly allows
+        anonymous access. Returns the documented HTTP status codes and response schemas.
+      operationId: listOrders
+      parameters:
+      - description: "Optional filter or selection value: status."
+        explode: true
+        in: query
+        name: status
+        required: false
+        schema:
+          enum:
+          - PENDING
+          - CONFIRMED
+          - SHIPPED
+          - CANCELLED
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/Order"
+                type: array
+          description: Orders retrieved (HTTP 200).
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Invalid request (HTTP 400).
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Unauthorized (HTTP 401).
+      security:
+      - bearerAuth: []
+      summary: List orders
+      tags:
+      - Orders
+      x-accepts: application/json
+      x-tags:
+      - tag: Orders
+    post:
+      description: Place order. Submits the relevant resource using the supplied inputs.
+        Requires a bearer access token unless this operation explicitly allows anonymous
+        access. Returns the documented HTTP status codes and response schemas.
+      operationId: createOrder
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/OrderInput"
+        description: Request payload for place order.
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Order"
+          description: Order created (HTTP 201).
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Invalid request (HTTP 400).
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Unauthorized (HTTP 401).
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Conflict (HTTP 409).
+      security:
+      - bearerAuth: []
+      summary: Place order
+      tags:
+      - Orders
+      x-content-type: application/json
+      x-accepts: application/json
+      x-tags:
+      - tag: Orders
+  /orders/{orderId}:
+    get:
+      description: Get order. Retrieves the relevant resource using the supplied inputs.
+        Requires a bearer access token unless this operation explicitly allows anonymous
+        access. Returns the documented HTTP status codes and response schemas.
+      operationId: getOrder
+      parameters:
+      - description: "Required resource identifier: orderId."
+        explode: false
+        in: path
+        name: orderId
+        required: true
+        schema:
+          minimum: 1
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Order"
+          description: Order retrieved (HTTP 200).
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Unauthorized (HTTP 401).
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Resource not found
+      security:
+      - bearerAuth: []
+      summary: Get order
+      tags:
+      - Orders
+      x-accepts: application/json
+      x-tags:
+      - tag: Orders
+  /orders/{orderId}/cancel:
+    post:
+      description: Cancel order. Submits the relevant resource using the supplied
+        inputs. Requires a bearer access token unless this operation explicitly allows
+        anonymous access. Returns the documented HTTP status codes and response schemas.
+      operationId: cancelOrder
+      parameters:
+      - description: "Required resource identifier: orderId."
+        explode: false
+        in: path
+        name: orderId
+        required: true
+        schema:
+          minimum: 1
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Order"
+          description: Order cancelled (HTTP 200).
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Invalid request (HTTP 400).
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Unauthorized (HTTP 401).
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Resource not found
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Conflict (HTTP 409).
+      security:
+      - bearerAuth: []
+      summary: Cancel order
+      tags:
+      - Orders
+      x-accepts: application/json
+      x-tags:
+      - tag: Orders
+  /shipments:
+    post:
+      description: Create shipment for an order. Submits the relevant resource using
+        the supplied inputs. Requires a bearer access token unless this operation
+        explicitly allows anonymous access. Returns the documented HTTP status codes
+        and response schemas.
+      operationId: createShipment
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ShipmentInput"
+        description: Request payload for create shipment for an order.
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Shipment"
+          description: Shipment created (HTTP 201).
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Invalid request (HTTP 400).
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Unauthorized (HTTP 401).
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Resource not found
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Conflict (HTTP 409).
+      security:
+      - bearerAuth: []
+      summary: Create shipment for an order
+      tags:
+      - Shipments
+      x-content-type: application/json
+      x-accepts: application/json
+      x-tags:
+      - tag: Shipments
+  /shipments/{shipmentId}:
+    get:
+      description: Get shipment. Retrieves the relevant resource using the supplied
+        inputs. Requires a bearer access token unless this operation explicitly allows
+        anonymous access. Returns the documented HTTP status codes and response schemas.
+      operationId: getShipment
+      parameters:
+      - description: "Required resource identifier: shipmentId."
+        explode: false
+        in: path
+        name: shipmentId
+        required: true
+        schema:
+          minimum: 1
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Shipment"
+          description: Shipment retrieved (HTTP 200).
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Unauthorized (HTTP 401).
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Resource not found
+      security:
+      - bearerAuth: []
+      summary: Get shipment
+      tags:
+      - Shipments
+      x-accepts: application/json
+      x-tags:
+      - tag: Shipments
+    patch:
+      description: Update shipment status. Partially modifies the relevant resource
+        using the supplied inputs. Requires a bearer access token unless this operation
+        explicitly allows anonymous access. Returns the documented HTTP status codes
+        and response schemas.
+      operationId: updateShipment
+      parameters:
+      - description: "Required resource identifier: shipmentId."
+        explode: false
+        in: path
+        name: shipmentId
+        required: true
+        schema:
+          minimum: 1
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ShipmentStatusInput"
+        description: Request payload for update shipment status.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Shipment"
+          description: Shipment updated (HTTP 200).
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Invalid request (HTTP 400).
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Unauthorized (HTTP 401).
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Resource not found
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Conflict (HTTP 409).
+      security:
+      - bearerAuth: []
+      summary: Update shipment status
+      tags:
+      - Shipments
+      x-content-type: application/json
+      x-accepts: application/json
+      x-tags:
+      - tag: Shipments
+components:
+  schemas:
+    Error:
+      description: Data model describing error information.
+      properties:
+        code:
+          description: code value for the Error resource.
+          type: string
+        message:
+          description: message value for the Error resource.
+          type: string
+      required:
+      - code
+      - message
+      type: object
+    LoginRequest:
+      description: Data model describing login request information.
+      example:
+        password: password
+        email: email
+      properties:
+        email:
+          description: email value for the LoginRequest resource.
+          format: email
+          type: string
+        password:
+          description: password value for the LoginRequest resource.
+          format: password
+          type: string
+      required:
+      - email
+      - password
+      type: object
+    AuthToken:
+      description: Data model describing auth token information.
+      example:
+        expiresIn: 3600
+        accessToken: accessToken
+        tokenType: Bearer
+      properties:
+        accessToken:
+          description: accessToken value for the AuthToken resource.
+          type: string
+        tokenType:
+          description: tokenType value for the AuthToken resource.
+          example: Bearer
+          type: string
+        expiresIn:
+          description: expiresIn value for the AuthToken resource.
+          example: 3600
+          type: integer
+      required:
+      - accessToken
+      - expiresIn
+      - tokenType
+      type: object
+    ProductInput:
+      description: Data model describing product input information.
+      example:
+        price: 0.08008281904610115
+        name: name
+        active: true
+        sku: sku
+        category: category
+      properties:
+        sku:
+          description: sku value for the ProductInput resource.
+          minLength: 1
+          type: string
+        name:
+          description: name value for the ProductInput resource.
+          minLength: 2
+          type: string
+        category:
+          description: category value for the ProductInput resource.
+          type: string
+        price:
+          description: price value for the ProductInput resource.
+          format: double
+          minimum: 0
+          type: number
+        active:
+          default: true
+          description: active value for the ProductInput resource.
+          type: boolean
+      required:
+      - name
+      - price
+      - sku
+      type: object
+    Product:
+      allOf:
+      - $ref: "#/components/schemas/ProductInput"
+      - properties:
+          id:
+            readOnly: true
+            type: integer
+        required:
+        - id
+        type: object
+      description: Data model describing product information.
+    WarehouseInput:
+      description: Data model describing warehouse input information.
+      example:
+        name: name
+        location: location
+      properties:
+        name:
+          description: name value for the WarehouseInput resource.
+          minLength: 2
+          type: string
+        location:
+          description: location value for the WarehouseInput resource.
+          minLength: 2
+          type: string
+      required:
+      - location
+      - name
+      type: object
+    Warehouse:
+      allOf:
+      - $ref: "#/components/schemas/WarehouseInput"
+      - properties:
+          id:
+            readOnly: true
+            type: integer
+        required:
+        - id
+        type: object
+      description: Data model describing warehouse information.
+    StockLevel:
+      description: Data model describing stock level information.
+      example:
+        quantity: 0
+        productId: 0
+        warehouseId: 6
+        updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        productId:
+          description: productId value for the StockLevel resource.
+          type: integer
+        warehouseId:
+          description: warehouseId value for the StockLevel resource.
+          type: integer
+        quantity:
+          description: quantity value for the StockLevel resource.
+          minimum: 0
+          type: integer
+        updatedAt:
+          description: updatedAt value for the StockLevel resource.
+          format: date-time
+          type: string
+      required:
+      - productId
+      - quantity
+      - warehouseId
+      type: object
+    StockAdjustmentInput:
+      description: Data model describing stock adjustment input information.
+      example:
+        quantityChange: 1
+        reason: reason
+        productId: 1
+        warehouseId: 1
+      properties:
+        productId:
+          description: productId value for the StockAdjustmentInput resource.
+          minimum: 1
+          type: integer
+        warehouseId:
+          description: warehouseId value for the StockAdjustmentInput resource.
+          minimum: 1
+          type: integer
+        quantityChange:
+          description: Signed change to stock. Must be nonzero.
+          type: integer
+        reason:
+          description: reason value for the StockAdjustmentInput resource.
+          minLength: 3
+          type: string
+      required:
+      - productId
+      - quantityChange
+      - reason
+      - warehouseId
+      type: object
+    StockAdjustment:
+      allOf:
+      - $ref: "#/components/schemas/StockAdjustmentInput"
+      - properties:
+          id:
+            readOnly: true
+            type: integer
+          createdAt:
+            format: date-time
+            type: string
+        required:
+        - createdAt
+        - id
+        type: object
+      description: Data model describing stock adjustment information.
+    OrderItemInput:
+      description: Data model describing order item input information.
+      example:
+        quantity: 1
+        productId: 1
+      properties:
+        productId:
+          description: productId value for the OrderItemInput resource.
+          minimum: 1
+          type: integer
+        quantity:
+          description: quantity value for the OrderItemInput resource.
+          minimum: 1
+          type: integer
+      required:
+      - productId
+      - quantity
+      type: object
+    OrderInput:
+      description: Data model describing order input information.
+      example:
+        customerEmail: customerEmail
+        shippingAddress: shippingAddress
+        items:
+        - quantity: 1
+          productId: 1
+        - quantity: 1
+          productId: 1
+      properties:
+        customerEmail:
+          description: customerEmail value for the OrderInput resource.
+          format: email
+          type: string
+        items:
+          description: items value for the OrderInput resource.
+          items:
+            $ref: "#/components/schemas/OrderItemInput"
+          minItems: 1
+          type: array
+        shippingAddress:
+          description: shippingAddress value for the OrderInput resource.
+          minLength: 5
+          type: string
+      required:
+      - customerEmail
+      - items
+      - shippingAddress
+      type: object
+    OrderItem:
+      allOf:
+      - $ref: "#/components/schemas/OrderItemInput"
+      - properties:
+          unitPrice:
+            format: double
+            minimum: 0
+            type: number
+        required:
+        - unitPrice
+        type: object
+      description: Data model describing order item information.
+    Order:
+      description: Data model describing order information.
+      example:
+        totalAmount: 0.6027456183070403
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        customerEmail: customerEmail
+        shippingAddress: shippingAddress
+        id: 0
+        items:
+        - null
+        - null
+        status: PENDING
+      properties:
+        id:
+          description: id value for the Order resource.
+          readOnly: true
+          type: integer
+        customerEmail:
+          description: customerEmail value for the Order resource.
+          format: email
+          type: string
+        items:
+          description: items value for the Order resource.
+          items:
+            $ref: "#/components/schemas/OrderItem"
+          type: array
+        shippingAddress:
+          description: shippingAddress value for the Order resource.
+          type: string
+        status:
+          description: status value for the Order resource.
+          enum:
+          - PENDING
+          - CONFIRMED
+          - SHIPPED
+          - CANCELLED
+          type: string
+        totalAmount:
+          description: totalAmount value for the Order resource.
+          format: double
+          minimum: 0
+          type: number
+        createdAt:
+          description: createdAt value for the Order resource.
+          format: date-time
+          type: string
+      required:
+      - customerEmail
+      - id
+      - items
+      - shippingAddress
+      - status
+      - totalAmount
+      type: object
+    ShipmentInput:
+      description: Data model describing shipment input information.
+      example:
+        carrier: carrier
+        orderId: 1
+        trackingNumber: trackingNumber
+      properties:
+        orderId:
+          description: orderId value for the ShipmentInput resource.
+          minimum: 1
+          type: integer
+        carrier:
+          description: carrier value for the ShipmentInput resource.
+          minLength: 2
+          type: string
+        trackingNumber:
+          description: trackingNumber value for the ShipmentInput resource.
+          minLength: 2
+          type: string
+      required:
+      - carrier
+      - orderId
+      - trackingNumber
+      type: object
+    ShipmentStatusInput:
+      description: Data model describing shipment status input information.
+      example:
+        status: CREATED
+      properties:
+        status:
+          description: status value for the ShipmentStatusInput resource.
+          enum:
+          - CREATED
+          - IN_TRANSIT
+          - DELIVERED
+          - RETURNED
+          type: string
+      required:
+      - status
+      type: object
+    Shipment:
+      allOf:
+      - $ref: "#/components/schemas/ShipmentInput"
+      - properties:
+          id:
+            readOnly: true
+            type: integer
+          status:
+            enum:
+            - CREATED
+            - IN_TRANSIT
+            - DELIVERED
+            - RETURNED
+            type: string
+          shippedAt:
+            format: date-time
+            nullable: true
+            type: string
+        required:
+        - id
+        - status
+        type: object
+      description: Data model describing shipment information.
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http

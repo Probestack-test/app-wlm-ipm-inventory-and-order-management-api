@@ -1,0 +1,364 @@
+{
+  "artifactId" : "inventory-and-order-management-api",
+  "resourceId" : "6ac9cb4255bde32a4ffb3620",
+  "generatedAt" : "2026-10-14T10:19:49.698776642Z",
+  "mock" : {
+    "id" : "aa4d764d-821d-4a01-bd17-a7cd64a3c11c",
+    "microserviceId" : null,
+    "specMetadataId" : "6acf27942c307d73fbc3a140",
+    "apiSpecName" : "Inventory and Order Management API",
+    "name" : "mock-inventory-and-order-management-api",
+    "mockServiceName" : "mock-inventory-and-order-management-api",
+    "mockServerUrl" : "https://forgesphere.probestack.io/mock-api/v1/api/private-mocks/mock-dc501596",
+    "mockUrl" : "mock-dc501596",
+    "isPrivate" : true,
+    "delayMs" : 0,
+    "responseLatencyMs" : 0,
+    "requestCount" : 18,
+    "createdAt" : "2026-10-14T07:00:00.165Z",
+    "updatedAt" : "2026-10-14T07:00:13.503Z"
+  },
+  "endpoints" : [ {
+    "id" : "e47f84a1-9be3-4e44-90b5-772c4da780b1",
+    "isActive" : true,
+    "request" : {
+      "method" : "POST",
+      "path" : "/auth/login",
+      "bodySample" : "{\"email\":\"user@example.com\",\"password\":\"string\"}",
+      "validationMode" : "NONE",
+      "validationSchema" : null,
+      "validateMethod" : true
+    },
+    "response" : {
+      "status" : 200,
+      "headers" : {
+        "Content-Type" : "application/json"
+      },
+      "body" : "{\"accessToken\":\"string\",\"tokenType\":\"Bearer\",\"expiresIn\":3600}",
+      "delayMs" : 0
+    }
+  }, {
+    "id" : "1bf581d1-5289-411b-a7ce-8c7b4234eb4d",
+    "isActive" : true,
+    "request" : {
+      "method" : "GET",
+      "path" : "/products",
+      "bodySample" : null,
+      "validationMode" : "NONE",
+      "validationSchema" : null,
+      "validateMethod" : true
+    },
+    "response" : {
+      "status" : 200,
+      "headers" : {
+        "Content-Type" : "application/json"
+      },
+      "body" : "[{\"sku\":\"string\",\"name\":\"string\",\"category\":\"string\",\"price\":0,\"active\":true,\"id\":0}]",
+      "delayMs" : 0
+    }
+  }, {
+    "id" : "4544dc6b-048b-46a8-9750-3960a1d47b94",
+    "isActive" : true,
+    "request" : {
+      "method" : "POST",
+      "path" : "/products",
+      "bodySample" : "{\"sku\":\"string\",\"name\":\"string\",\"category\":\"string\",\"price\":0,\"active\":true}",
+      "validationMode" : "NONE",
+      "validationSchema" : null,
+      "validateMethod" : true
+    },
+    "response" : {
+      "status" : 201,
+      "headers" : {
+        "Content-Type" : "application/json"
+      },
+      "body" : "{\"sku\":\"string\",\"name\":\"string\",\"category\":\"string\",\"price\":0,\"active\":true,\"id\":0}",
+      "delayMs" : 0
+    }
+  }, {
+    "id" : "c4108cf0-4cef-40f0-b5ae-d4748630cd6c",
+    "isActive" : true,
+    "request" : {
+      "method" : "GET",
+      "path" : "/products/{productId}",
+      "bodySample" : null,
+      "validationMode" : "NONE",
+      "validationSchema" : null,
+      "validateMethod" : true
+    },
+    "response" : {
+      "status" : 200,
+      "headers" : {
+        "Content-Type" : "application/json"
+      },
+      "body" : "{\"sku\":\"string\",\"name\":\"string\",\"category\":\"string\",\"price\":0,\"active\":true,\"id\":0}",
+      "delayMs" : 0
+    }
+  }, {
+    "id" : "6ad3622e-0b88-4f2b-9e23-33a528e3bdc8",
+    "isActive" : true,
+    "request" : {
+      "method" : "PUT",
+      "path" : "/products/{productId}",
+      "bodySample" : "{\"sku\":\"string\",\"name\":\"string\",\"category\":\"string\",\"price\":0,\"active\":true}",
+      "validationMode" : "NONE",
+      "validationSchema" : null,
+      "validateMethod" : true
+    },
+    "response" : {
+      "status" : 200,
+      "headers" : {
+        "Content-Type" : "application/json"
+      },
+      "body" : "{\"sku\":\"string\",\"name\":\"string\",\"category\":\"string\",\"price\":0,\"active\":true,\"id\":0}",
+      "delayMs" : 0
+    }
+  }, {
+    "id" : "cedfe7e7-4ea1-4e2a-80a6-21ee5d4d20d5",
+    "isActive" : true,
+    "request" : {
+      "method" : "DELETE",
+      "path" : "/products/{productId}",
+      "bodySample" : null,
+      "validationMode" : "NONE",
+      "validationSchema" : null,
+      "validateMethod" : true
+    },
+    "response" : {
+      "status" : 204,
+      "headers" : {
+        "Content-Type" : "application/json"
+      },
+      "body" : "{}",
+      "delayMs" : 0
+    }
+  }, {
+    "id" : "813b05bd-20d1-4140-a728-84600aa83f95",
+    "isActive" : true,
+    "request" : {
+      "method" : "GET",
+      "path" : "/warehouses",
+      "bodySample" : null,
+      "validationMode" : "NONE",
+      "validationSchema" : null,
+      "validateMethod" : true
+    },
+    "response" : {
+      "status" : 200,
+      "headers" : {
+        "Content-Type" : "application/json"
+      },
+      "body" : "[{\"name\":\"string\",\"location\":\"string\",\"id\":0}]",
+      "delayMs" : 0
+    }
+  }, {
+    "id" : "c9e2b9b9-960b-426c-bd0d-8bb65ea441f2",
+    "isActive" : true,
+    "request" : {
+      "method" : "POST",
+      "path" : "/warehouses",
+      "bodySample" : "{\"name\":\"string\",\"location\":\"string\"}",
+      "validationMode" : "NONE",
+      "validationSchema" : null,
+      "validateMethod" : true
+    },
+    "response" : {
+      "status" : 201,
+      "headers" : {
+        "Content-Type" : "application/json"
+      },
+      "body" : "{\"name\":\"string\",\"location\":\"string\",\"id\":0}",
+      "delayMs" : 0
+    }
+  }, {
+    "id" : "2641442e-e0ad-4d7b-803e-fb26c4445825",
+    "isActive" : true,
+    "request" : {
+      "method" : "GET",
+      "path" : "/warehouses/{warehouseId}",
+      "bodySample" : null,
+      "validationMode" : "NONE",
+      "validationSchema" : null,
+      "validateMethod" : true
+    },
+    "response" : {
+      "status" : 200,
+      "headers" : {
+        "Content-Type" : "application/json"
+      },
+      "body" : "{\"name\":\"string\",\"location\":\"string\",\"id\":0}",
+      "delayMs" : 0
+    }
+  }, {
+    "id" : "763fbe13-5d53-4a0b-b18c-8207c4dea508",
+    "isActive" : true,
+    "request" : {
+      "method" : "GET",
+      "path" : "/inventory",
+      "bodySample" : null,
+      "validationMode" : "NONE",
+      "validationSchema" : null,
+      "validateMethod" : true
+    },
+    "response" : {
+      "status" : 200,
+      "headers" : {
+        "Content-Type" : "application/json"
+      },
+      "body" : "[{\"productId\":0,\"warehouseId\":0,\"quantity\":0,\"updatedAt\":\"2024-01-01T00:00:00Z\"}]",
+      "delayMs" : 0
+    }
+  }, {
+    "id" : "3c46320b-5e1b-48f2-bc5f-6ae9f44c5f67",
+    "isActive" : true,
+    "request" : {
+      "method" : "POST",
+      "path" : "/inventory/adjustments",
+      "bodySample" : "{\"productId\":0,\"warehouseId\":0,\"quantityChange\":0,\"reason\":\"string\"}",
+      "validationMode" : "NONE",
+      "validationSchema" : null,
+      "validateMethod" : true
+    },
+    "response" : {
+      "status" : 201,
+      "headers" : {
+        "Content-Type" : "application/json"
+      },
+      "body" : "{\"productId\":0,\"warehouseId\":0,\"quantityChange\":0,\"reason\":\"string\",\"id\":0,\"createdAt\":\"2024-01-01T00:00:00Z\"}",
+      "delayMs" : 0
+    }
+  }, {
+    "id" : "3d0dc984-66b6-4a90-81a5-18eddfd4918c",
+    "isActive" : true,
+    "request" : {
+      "method" : "GET",
+      "path" : "/orders",
+      "bodySample" : null,
+      "validationMode" : "NONE",
+      "validationSchema" : null,
+      "validateMethod" : true
+    },
+    "response" : {
+      "status" : 200,
+      "headers" : {
+        "Content-Type" : "application/json"
+      },
+      "body" : "[{\"id\":0,\"customerEmail\":\"user@example.com\",\"items\":[{\"productId\":0,\"quantity\":0,\"unitPrice\":0}],\"shippingAddress\":\"string\",\"status\":\"PENDING\",\"totalAmount\":0,\"createdAt\":\"2024-01-01T00:00:00Z\"}]",
+      "delayMs" : 0
+    }
+  }, {
+    "id" : "6149abda-8401-460d-b941-0718f90424b0",
+    "isActive" : true,
+    "request" : {
+      "method" : "POST",
+      "path" : "/orders",
+      "bodySample" : "{\"customerEmail\":\"user@example.com\",\"items\":[{\"productId\":0,\"quantity\":0}],\"shippingAddress\":\"string\"}",
+      "validationMode" : "NONE",
+      "validationSchema" : null,
+      "validateMethod" : true
+    },
+    "response" : {
+      "status" : 201,
+      "headers" : {
+        "Content-Type" : "application/json"
+      },
+      "body" : "{\"id\":0,\"customerEmail\":\"user@example.com\",\"items\":[{\"productId\":0,\"quantity\":0,\"unitPrice\":0}],\"shippingAddress\":\"string\",\"status\":\"PENDING\",\"totalAmount\":0,\"createdAt\":\"2024-01-01T00:00:00Z\"}",
+      "delayMs" : 0
+    }
+  }, {
+    "id" : "610c8168-05de-40a4-9865-a5b0fad2c000",
+    "isActive" : true,
+    "request" : {
+      "method" : "GET",
+      "path" : "/orders/{orderId}",
+      "bodySample" : null,
+      "validationMode" : "NONE",
+      "validationSchema" : null,
+      "validateMethod" : true
+    },
+    "response" : {
+      "status" : 200,
+      "headers" : {
+        "Content-Type" : "application/json"
+      },
+      "body" : "{\"id\":0,\"customerEmail\":\"user@example.com\",\"items\":[{\"productId\":0,\"quantity\":0,\"unitPrice\":0}],\"shippingAddress\":\"string\",\"status\":\"PENDING\",\"totalAmount\":0,\"createdAt\":\"2024-01-01T00:00:00Z\"}",
+      "delayMs" : 0
+    }
+  }, {
+    "id" : "8d05609b-2750-47df-ab8d-84b1225351e4",
+    "isActive" : true,
+    "request" : {
+      "method" : "POST",
+      "path" : "/orders/{orderId}/cancel",
+      "bodySample" : null,
+      "validationMode" : "NONE",
+      "validationSchema" : null,
+      "validateMethod" : true
+    },
+    "response" : {
+      "status" : 200,
+      "headers" : {
+        "Content-Type" : "application/json"
+      },
+      "body" : "{\"id\":0,\"customerEmail\":\"user@example.com\",\"items\":[{\"productId\":0,\"quantity\":0,\"unitPrice\":0}],\"shippingAddress\":\"string\",\"status\":\"PENDING\",\"totalAmount\":0,\"createdAt\":\"2024-01-01T00:00:00Z\"}",
+      "delayMs" : 0
+    }
+  }, {
+    "id" : "f6d25bab-5e42-43b2-8380-fcd83b4e957a",
+    "isActive" : true,
+    "request" : {
+      "method" : "POST",
+      "path" : "/shipments",
+      "bodySample" : "{\"orderId\":0,\"carrier\":\"string\",\"trackingNumber\":\"string\"}",
+      "validationMode" : "NONE",
+      "validationSchema" : null,
+      "validateMethod" : true
+    },
+    "response" : {
+      "status" : 201,
+      "headers" : {
+        "Content-Type" : "application/json"
+      },
+      "body" : "{\"orderId\":0,\"carrier\":\"string\",\"trackingNumber\":\"string\",\"id\":0,\"status\":\"CREATED\",\"shippedAt\":\"2024-01-01T00:00:00Z\"}",
+      "delayMs" : 0
+    }
+  }, {
+    "id" : "e18d68ac-2fe3-4813-89bf-6d88bed92cce",
+    "isActive" : true,
+    "request" : {
+      "method" : "GET",
+      "path" : "/shipments/{shipmentId}",
+      "bodySample" : null,
+      "validationMode" : "NONE",
+      "validationSchema" : null,
+      "validateMethod" : true
+    },
+    "response" : {
+      "status" : 200,
+      "headers" : {
+        "Content-Type" : "application/json"
+      },
+      "body" : "{\"orderId\":0,\"carrier\":\"string\",\"trackingNumber\":\"string\",\"id\":0,\"status\":\"CREATED\",\"shippedAt\":\"2024-01-01T00:00:00Z\"}",
+      "delayMs" : 0
+    }
+  }, {
+    "id" : "3c6d24c0-9a73-4b54-bab8-eeb48f4bde22",
+    "isActive" : true,
+    "request" : {
+      "method" : "PATCH",
+      "path" : "/shipments/{shipmentId}",
+      "bodySample" : "{\"status\":\"CREATED\"}",
+      "validationMode" : "NONE",
+      "validationSchema" : null,
+      "validateMethod" : true
+    },
+    "response" : {
+      "status" : 200,
+      "headers" : {
+        "Content-Type" : "application/json"
+      },
+      "body" : "{\"orderId\":0,\"carrier\":\"string\",\"trackingNumber\":\"string\",\"id\":0,\"status\":\"CREATED\",\"shippedAt\":\"2024-01-01T00:00:00Z\"}",
+      "delayMs" : 0
+    }
+  } ]
+}

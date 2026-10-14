@@ -1,0 +1,564 @@
+{
+  "info" : {
+    "name" : "inventory-and-order-management-api Mock Test Collection",
+    "description" : "Generated from ForgeSphere mock endpoint definitions.",
+    "schema" : "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable" : [ {
+    "key" : "mockBaseUrl",
+    "value" : "https://forgesphere.probestack.io/mock-api/v1/api/private-mocks/mock-dc501596"
+  }, {
+    "key" : "userEmail",
+    "value" : ""
+  }, {
+    "key" : "id",
+    "value" : "sample-id"
+  } ],
+  "item" : [ {
+    "name" : "POST /auth/login",
+    "request" : {
+      "method" : "POST",
+      "header" : [ {
+        "key" : "Accept",
+        "value" : "application/json"
+      }, {
+        "key" : "Content-Type",
+        "value" : "application/json"
+      }, {
+        "key" : "x-user-email",
+        "value" : "{{userEmail}}"
+      } ],
+      "url" : {
+        "raw" : "{{mockBaseUrl}}/auth/login"
+      },
+      "body" : {
+        "mode" : "raw",
+        "raw" : "{\"email\":\"user@example.com\",\"password\":\"string\"}",
+        "options" : {
+          "raw" : {
+            "language" : "json"
+          }
+        }
+      }
+    },
+    "response" : [ {
+      "name" : "Mock 200",
+      "code" : 200,
+      "status" : "OK",
+      "header" : [ {
+        "key" : "Content-Type",
+        "value" : "application/json"
+      } ],
+      "body" : "{\"accessToken\":\"string\",\"tokenType\":\"Bearer\",\"expiresIn\":3600}"
+    } ]
+  }, {
+    "name" : "GET /products",
+    "request" : {
+      "method" : "GET",
+      "header" : [ {
+        "key" : "Accept",
+        "value" : "application/json"
+      }, {
+        "key" : "x-user-email",
+        "value" : "{{userEmail}}"
+      } ],
+      "url" : {
+        "raw" : "{{mockBaseUrl}}/products"
+      }
+    },
+    "response" : [ {
+      "name" : "Mock 200",
+      "code" : 200,
+      "status" : "OK",
+      "header" : [ {
+        "key" : "Content-Type",
+        "value" : "application/json"
+      } ],
+      "body" : "[{\"sku\":\"string\",\"name\":\"string\",\"category\":\"string\",\"price\":0,\"active\":true,\"id\":0}]"
+    } ]
+  }, {
+    "name" : "POST /products",
+    "request" : {
+      "method" : "POST",
+      "header" : [ {
+        "key" : "Accept",
+        "value" : "application/json"
+      }, {
+        "key" : "Content-Type",
+        "value" : "application/json"
+      }, {
+        "key" : "x-user-email",
+        "value" : "{{userEmail}}"
+      } ],
+      "url" : {
+        "raw" : "{{mockBaseUrl}}/products"
+      },
+      "body" : {
+        "mode" : "raw",
+        "raw" : "{\"sku\":\"string\",\"name\":\"string\",\"category\":\"string\",\"price\":0,\"active\":true}",
+        "options" : {
+          "raw" : {
+            "language" : "json"
+          }
+        }
+      }
+    },
+    "response" : [ {
+      "name" : "Mock 201",
+      "code" : 201,
+      "status" : "OK",
+      "header" : [ {
+        "key" : "Content-Type",
+        "value" : "application/json"
+      } ],
+      "body" : "{\"sku\":\"string\",\"name\":\"string\",\"category\":\"string\",\"price\":0,\"active\":true,\"id\":0}"
+    } ]
+  }, {
+    "name" : "GET /products/{productId}",
+    "request" : {
+      "method" : "GET",
+      "header" : [ {
+        "key" : "Accept",
+        "value" : "application/json"
+      }, {
+        "key" : "x-user-email",
+        "value" : "{{userEmail}}"
+      } ],
+      "url" : {
+        "raw" : "{{mockBaseUrl}}/products/{productId}"
+      }
+    },
+    "response" : [ {
+      "name" : "Mock 200",
+      "code" : 200,
+      "status" : "OK",
+      "header" : [ {
+        "key" : "Content-Type",
+        "value" : "application/json"
+      } ],
+      "body" : "{\"sku\":\"string\",\"name\":\"string\",\"category\":\"string\",\"price\":0,\"active\":true,\"id\":0}"
+    } ]
+  }, {
+    "name" : "PUT /products/{productId}",
+    "request" : {
+      "method" : "PUT",
+      "header" : [ {
+        "key" : "Accept",
+        "value" : "application/json"
+      }, {
+        "key" : "Content-Type",
+        "value" : "application/json"
+      }, {
+        "key" : "x-user-email",
+        "value" : "{{userEmail}}"
+      } ],
+      "url" : {
+        "raw" : "{{mockBaseUrl}}/products/{productId}"
+      },
+      "body" : {
+        "mode" : "raw",
+        "raw" : "{\"sku\":\"string\",\"name\":\"string\",\"category\":\"string\",\"price\":0,\"active\":true}",
+        "options" : {
+          "raw" : {
+            "language" : "json"
+          }
+        }
+      }
+    },
+    "response" : [ {
+      "name" : "Mock 200",
+      "code" : 200,
+      "status" : "OK",
+      "header" : [ {
+        "key" : "Content-Type",
+        "value" : "application/json"
+      } ],
+      "body" : "{\"sku\":\"string\",\"name\":\"string\",\"category\":\"string\",\"price\":0,\"active\":true,\"id\":0}"
+    } ]
+  }, {
+    "name" : "DELETE /products/{productId}",
+    "request" : {
+      "method" : "DELETE",
+      "header" : [ {
+        "key" : "Accept",
+        "value" : "application/json"
+      }, {
+        "key" : "x-user-email",
+        "value" : "{{userEmail}}"
+      } ],
+      "url" : {
+        "raw" : "{{mockBaseUrl}}/products/{productId}"
+      }
+    },
+    "response" : [ {
+      "name" : "Mock 204",
+      "code" : 204,
+      "status" : "OK",
+      "header" : [ {
+        "key" : "Content-Type",
+        "value" : "application/json"
+      } ],
+      "body" : "{}"
+    } ]
+  }, {
+    "name" : "GET /warehouses",
+    "request" : {
+      "method" : "GET",
+      "header" : [ {
+        "key" : "Accept",
+        "value" : "application/json"
+      }, {
+        "key" : "x-user-email",
+        "value" : "{{userEmail}}"
+      } ],
+      "url" : {
+        "raw" : "{{mockBaseUrl}}/warehouses"
+      }
+    },
+    "response" : [ {
+      "name" : "Mock 200",
+      "code" : 200,
+      "status" : "OK",
+      "header" : [ {
+        "key" : "Content-Type",
+        "value" : "application/json"
+      } ],
+      "body" : "[{\"name\":\"string\",\"location\":\"string\",\"id\":0}]"
+    } ]
+  }, {
+    "name" : "POST /warehouses",
+    "request" : {
+      "method" : "POST",
+      "header" : [ {
+        "key" : "Accept",
+        "value" : "application/json"
+      }, {
+        "key" : "Content-Type",
+        "value" : "application/json"
+      }, {
+        "key" : "x-user-email",
+        "value" : "{{userEmail}}"
+      } ],
+      "url" : {
+        "raw" : "{{mockBaseUrl}}/warehouses"
+      },
+      "body" : {
+        "mode" : "raw",
+        "raw" : "{\"name\":\"string\",\"location\":\"string\"}",
+        "options" : {
+          "raw" : {
+            "language" : "json"
+          }
+        }
+      }
+    },
+    "response" : [ {
+      "name" : "Mock 201",
+      "code" : 201,
+      "status" : "OK",
+      "header" : [ {
+        "key" : "Content-Type",
+        "value" : "application/json"
+      } ],
+      "body" : "{\"name\":\"string\",\"location\":\"string\",\"id\":0}"
+    } ]
+  }, {
+    "name" : "GET /warehouses/{warehouseId}",
+    "request" : {
+      "method" : "GET",
+      "header" : [ {
+        "key" : "Accept",
+        "value" : "application/json"
+      }, {
+        "key" : "x-user-email",
+        "value" : "{{userEmail}}"
+      } ],
+      "url" : {
+        "raw" : "{{mockBaseUrl}}/warehouses/{warehouseId}"
+      }
+    },
+    "response" : [ {
+      "name" : "Mock 200",
+      "code" : 200,
+      "status" : "OK",
+      "header" : [ {
+        "key" : "Content-Type",
+        "value" : "application/json"
+      } ],
+      "body" : "{\"name\":\"string\",\"location\":\"string\",\"id\":0}"
+    } ]
+  }, {
+    "name" : "GET /inventory",
+    "request" : {
+      "method" : "GET",
+      "header" : [ {
+        "key" : "Accept",
+        "value" : "application/json"
+      }, {
+        "key" : "x-user-email",
+        "value" : "{{userEmail}}"
+      } ],
+      "url" : {
+        "raw" : "{{mockBaseUrl}}/inventory"
+      }
+    },
+    "response" : [ {
+      "name" : "Mock 200",
+      "code" : 200,
+      "status" : "OK",
+      "header" : [ {
+        "key" : "Content-Type",
+        "value" : "application/json"
+      } ],
+      "body" : "[{\"productId\":0,\"warehouseId\":0,\"quantity\":0,\"updatedAt\":\"2024-01-01T00:00:00Z\"}]"
+    } ]
+  }, {
+    "name" : "POST /inventory/adjustments",
+    "request" : {
+      "method" : "POST",
+      "header" : [ {
+        "key" : "Accept",
+        "value" : "application/json"
+      }, {
+        "key" : "Content-Type",
+        "value" : "application/json"
+      }, {
+        "key" : "x-user-email",
+        "value" : "{{userEmail}}"
+      } ],
+      "url" : {
+        "raw" : "{{mockBaseUrl}}/inventory/adjustments"
+      },
+      "body" : {
+        "mode" : "raw",
+        "raw" : "{\"productId\":0,\"warehouseId\":0,\"quantityChange\":0,\"reason\":\"string\"}",
+        "options" : {
+          "raw" : {
+            "language" : "json"
+          }
+        }
+      }
+    },
+    "response" : [ {
+      "name" : "Mock 201",
+      "code" : 201,
+      "status" : "OK",
+      "header" : [ {
+        "key" : "Content-Type",
+        "value" : "application/json"
+      } ],
+      "body" : "{\"productId\":0,\"warehouseId\":0,\"quantityChange\":0,\"reason\":\"string\",\"id\":0,\"createdAt\":\"2024-01-01T00:00:00Z\"}"
+    } ]
+  }, {
+    "name" : "GET /orders",
+    "request" : {
+      "method" : "GET",
+      "header" : [ {
+        "key" : "Accept",
+        "value" : "application/json"
+      }, {
+        "key" : "x-user-email",
+        "value" : "{{userEmail}}"
+      } ],
+      "url" : {
+        "raw" : "{{mockBaseUrl}}/orders"
+      }
+    },
+    "response" : [ {
+      "name" : "Mock 200",
+      "code" : 200,
+      "status" : "OK",
+      "header" : [ {
+        "key" : "Content-Type",
+        "value" : "application/json"
+      } ],
+      "body" : "[{\"id\":0,\"customerEmail\":\"user@example.com\",\"items\":[{\"productId\":0,\"quantity\":0,\"unitPrice\":0}],\"shippingAddress\":\"string\",\"status\":\"PENDING\",\"totalAmount\":0,\"createdAt\":\"2024-01-01T00:00:00Z\"}]"
+    } ]
+  }, {
+    "name" : "POST /orders",
+    "request" : {
+      "method" : "POST",
+      "header" : [ {
+        "key" : "Accept",
+        "value" : "application/json"
+      }, {
+        "key" : "Content-Type",
+        "value" : "application/json"
+      }, {
+        "key" : "x-user-email",
+        "value" : "{{userEmail}}"
+      } ],
+      "url" : {
+        "raw" : "{{mockBaseUrl}}/orders"
+      },
+      "body" : {
+        "mode" : "raw",
+        "raw" : "{\"customerEmail\":\"user@example.com\",\"items\":[{\"productId\":0,\"quantity\":0}],\"shippingAddress\":\"string\"}",
+        "options" : {
+          "raw" : {
+            "language" : "json"
+          }
+        }
+      }
+    },
+    "response" : [ {
+      "name" : "Mock 201",
+      "code" : 201,
+      "status" : "OK",
+      "header" : [ {
+        "key" : "Content-Type",
+        "value" : "application/json"
+      } ],
+      "body" : "{\"id\":0,\"customerEmail\":\"user@example.com\",\"items\":[{\"productId\":0,\"quantity\":0,\"unitPrice\":0}],\"shippingAddress\":\"string\",\"status\":\"PENDING\",\"totalAmount\":0,\"createdAt\":\"2024-01-01T00:00:00Z\"}"
+    } ]
+  }, {
+    "name" : "GET /orders/{orderId}",
+    "request" : {
+      "method" : "GET",
+      "header" : [ {
+        "key" : "Accept",
+        "value" : "application/json"
+      }, {
+        "key" : "x-user-email",
+        "value" : "{{userEmail}}"
+      } ],
+      "url" : {
+        "raw" : "{{mockBaseUrl}}/orders/{orderId}"
+      }
+    },
+    "response" : [ {
+      "name" : "Mock 200",
+      "code" : 200,
+      "status" : "OK",
+      "header" : [ {
+        "key" : "Content-Type",
+        "value" : "application/json"
+      } ],
+      "body" : "{\"id\":0,\"customerEmail\":\"user@example.com\",\"items\":[{\"productId\":0,\"quantity\":0,\"unitPrice\":0}],\"shippingAddress\":\"string\",\"status\":\"PENDING\",\"totalAmount\":0,\"createdAt\":\"2024-01-01T00:00:00Z\"}"
+    } ]
+  }, {
+    "name" : "POST /orders/{orderId}/cancel",
+    "request" : {
+      "method" : "POST",
+      "header" : [ {
+        "key" : "Accept",
+        "value" : "application/json"
+      }, {
+        "key" : "x-user-email",
+        "value" : "{{userEmail}}"
+      } ],
+      "url" : {
+        "raw" : "{{mockBaseUrl}}/orders/{orderId}/cancel"
+      }
+    },
+    "response" : [ {
+      "name" : "Mock 200",
+      "code" : 200,
+      "status" : "OK",
+      "header" : [ {
+        "key" : "Content-Type",
+        "value" : "application/json"
+      } ],
+      "body" : "{\"id\":0,\"customerEmail\":\"user@example.com\",\"items\":[{\"productId\":0,\"quantity\":0,\"unitPrice\":0}],\"shippingAddress\":\"string\",\"status\":\"PENDING\",\"totalAmount\":0,\"createdAt\":\"2024-01-01T00:00:00Z\"}"
+    } ]
+  }, {
+    "name" : "POST /shipments",
+    "request" : {
+      "method" : "POST",
+      "header" : [ {
+        "key" : "Accept",
+        "value" : "application/json"
+      }, {
+        "key" : "Content-Type",
+        "value" : "application/json"
+      }, {
+        "key" : "x-user-email",
+        "value" : "{{userEmail}}"
+      } ],
+      "url" : {
+        "raw" : "{{mockBaseUrl}}/shipments"
+      },
+      "body" : {
+        "mode" : "raw",
+        "raw" : "{\"orderId\":0,\"carrier\":\"string\",\"trackingNumber\":\"string\"}",
+        "options" : {
+          "raw" : {
+            "language" : "json"
+          }
+        }
+      }
+    },
+    "response" : [ {
+      "name" : "Mock 201",
+      "code" : 201,
+      "status" : "OK",
+      "header" : [ {
+        "key" : "Content-Type",
+        "value" : "application/json"
+      } ],
+      "body" : "{\"orderId\":0,\"carrier\":\"string\",\"trackingNumber\":\"string\",\"id\":0,\"status\":\"CREATED\",\"shippedAt\":\"2024-01-01T00:00:00Z\"}"
+    } ]
+  }, {
+    "name" : "GET /shipments/{shipmentId}",
+    "request" : {
+      "method" : "GET",
+      "header" : [ {
+        "key" : "Accept",
+        "value" : "application/json"
+      }, {
+        "key" : "x-user-email",
+        "value" : "{{userEmail}}"
+      } ],
+      "url" : {
+        "raw" : "{{mockBaseUrl}}/shipments/{shipmentId}"
+      }
+    },
+    "response" : [ {
+      "name" : "Mock 200",
+      "code" : 200,
+      "status" : "OK",
+      "header" : [ {
+        "key" : "Content-Type",
+        "value" : "application/json"
+      } ],
+      "body" : "{\"orderId\":0,\"carrier\":\"string\",\"trackingNumber\":\"string\",\"id\":0,\"status\":\"CREATED\",\"shippedAt\":\"2024-01-01T00:00:00Z\"}"
+    } ]
+  }, {
+    "name" : "PATCH /shipments/{shipmentId}",
+    "request" : {
+      "method" : "PATCH",
+      "header" : [ {
+        "key" : "Accept",
+        "value" : "application/json"
+      }, {
+        "key" : "Content-Type",
+        "value" : "application/json"
+      }, {
+        "key" : "x-user-email",
+        "value" : "{{userEmail}}"
+      } ],
+      "url" : {
+        "raw" : "{{mockBaseUrl}}/shipments/{shipmentId}"
+      },
+      "body" : {
+        "mode" : "raw",
+        "raw" : "{\"status\":\"CREATED\"}",
+        "options" : {
+          "raw" : {
+            "language" : "json"
+          }
+        }
+      }
+    },
+    "response" : [ {
+      "name" : "Mock 200",
+      "code" : 200,
+      "status" : "OK",
+      "header" : [ {
+        "key" : "Content-Type",
+        "value" : "application/json"
+      } ],
+      "body" : "{\"orderId\":0,\"carrier\":\"string\",\"trackingNumber\":\"string\",\"id\":0,\"status\":\"CREATED\",\"shippedAt\":\"2024-01-01T00:00:00Z\"}"
+    } ]
+  } ]
+}

@@ -1,0 +1,678 @@
+{
+  "artifactId" : "inventory-and-order-management-api",
+  "generatedAt" : "2026-10-14T10:19:49.893589441Z",
+  "testCaseCount" : 56,
+  "testCases" : [ {
+    "category" : "Positive",
+    "name" : "[POSITIVE] POST /auth/login",
+    "description" : "Happy path: valid request should return 200",
+    "request" : {
+      "method" : "POST",
+      "url" : "{{baseUrl}}/auth/login",
+      "path" : [ "auth", "login" ],
+      "headers" : { },
+      "body" : null
+    },
+    "assertions" : [ "pm.test(\"Status code is 200\", function() { if(pm.response.code !== 200) throw new Error(\"Expected 200 but got \" + pm.response.code); });" ]
+  }, {
+    "category" : "Positive",
+    "name" : "[POSITIVE] GET /products",
+    "description" : "Happy path: valid request should return 200",
+    "request" : {
+      "method" : "GET",
+      "url" : "{{baseUrl}}/products",
+      "path" : [ "products" ],
+      "headers" : { },
+      "body" : null
+    },
+    "assertions" : [ "pm.test(\"Status code is 200\", function() { if(pm.response.code !== 200) throw new Error(\"Expected 200 but got \" + pm.response.code); });" ]
+  }, {
+    "category" : "Positive",
+    "name" : "[POSITIVE] POST /products",
+    "description" : "Happy path: valid request should return 201",
+    "request" : {
+      "method" : "POST",
+      "url" : "{{baseUrl}}/products",
+      "path" : [ "products" ],
+      "headers" : { },
+      "body" : null
+    },
+    "assertions" : [ "pm.test(\"Status code is 201\", function() { if(pm.response.code !== 201) throw new Error(\"Expected 201 but got \" + pm.response.code); });" ]
+  }, {
+    "category" : "Positive",
+    "name" : "[POSITIVE] GET /products/{productId}",
+    "description" : "Happy path: valid request should return 200",
+    "request" : {
+      "method" : "GET",
+      "url" : "{{baseUrl}}/products/{productId}",
+      "path" : [ "products", "{productId}" ],
+      "headers" : { },
+      "body" : null
+    },
+    "assertions" : [ "pm.test(\"Status code is 200\", function() { if(pm.response.code !== 200) throw new Error(\"Expected 200 but got \" + pm.response.code); });" ]
+  }, {
+    "category" : "Positive",
+    "name" : "[POSITIVE] PUT /products/{productId}",
+    "description" : "Happy path: valid request should return 200",
+    "request" : {
+      "method" : "PUT",
+      "url" : "{{baseUrl}}/products/{productId}",
+      "path" : [ "products", "{productId}" ],
+      "headers" : { },
+      "body" : null
+    },
+    "assertions" : [ "pm.test(\"Status code is 200\", function() { if(pm.response.code !== 200) throw new Error(\"Expected 200 but got \" + pm.response.code); });" ]
+  }, {
+    "category" : "Positive",
+    "name" : "[POSITIVE] DELETE /products/{productId}",
+    "description" : "Happy path: valid request should return 204",
+    "request" : {
+      "method" : "DELETE",
+      "url" : "{{baseUrl}}/products/{productId}",
+      "path" : [ "products", "{productId}" ],
+      "headers" : { },
+      "body" : null
+    },
+    "assertions" : [ "pm.test(\"Status code is 204\", function() { if(pm.response.code !== 204) throw new Error(\"Expected 204 but got \" + pm.response.code); });" ]
+  }, {
+    "category" : "Positive",
+    "name" : "[POSITIVE] GET /warehouses",
+    "description" : "Happy path: valid request should return 200",
+    "request" : {
+      "method" : "GET",
+      "url" : "{{baseUrl}}/warehouses",
+      "path" : [ "warehouses" ],
+      "headers" : { },
+      "body" : null
+    },
+    "assertions" : [ "pm.test(\"Status code is 200\", function() { if(pm.response.code !== 200) throw new Error(\"Expected 200 but got \" + pm.response.code); });" ]
+  }, {
+    "category" : "Positive",
+    "name" : "[POSITIVE] POST /warehouses",
+    "description" : "Happy path: valid request should return 201",
+    "request" : {
+      "method" : "POST",
+      "url" : "{{baseUrl}}/warehouses",
+      "path" : [ "warehouses" ],
+      "headers" : { },
+      "body" : null
+    },
+    "assertions" : [ "pm.test(\"Status code is 201\", function() { if(pm.response.code !== 201) throw new Error(\"Expected 201 but got \" + pm.response.code); });" ]
+  }, {
+    "category" : "Positive",
+    "name" : "[POSITIVE] GET /warehouses/{warehouseId}",
+    "description" : "Happy path: valid request should return 200",
+    "request" : {
+      "method" : "GET",
+      "url" : "{{baseUrl}}/warehouses/{warehouseId}",
+      "path" : [ "warehouses", "{warehouseId}" ],
+      "headers" : { },
+      "body" : null
+    },
+    "assertions" : [ "pm.test(\"Status code is 200\", function() { if(pm.response.code !== 200) throw new Error(\"Expected 200 but got \" + pm.response.code); });" ]
+  }, {
+    "category" : "Positive",
+    "name" : "[POSITIVE] GET /inventory",
+    "description" : "Happy path: valid request should return 200",
+    "request" : {
+      "method" : "GET",
+      "url" : "{{baseUrl}}/inventory",
+      "path" : [ "inventory" ],
+      "headers" : { },
+      "body" : null
+    },
+    "assertions" : [ "pm.test(\"Status code is 200\", function() { if(pm.response.code !== 200) throw new Error(\"Expected 200 but got \" + pm.response.code); });" ]
+  }, {
+    "category" : "Positive",
+    "name" : "[POSITIVE] POST /inventory/adjustments",
+    "description" : "Happy path: valid request should return 201",
+    "request" : {
+      "method" : "POST",
+      "url" : "{{baseUrl}}/inventory/adjustments",
+      "path" : [ "inventory", "adjustments" ],
+      "headers" : { },
+      "body" : null
+    },
+    "assertions" : [ "pm.test(\"Status code is 201\", function() { if(pm.response.code !== 201) throw new Error(\"Expected 201 but got \" + pm.response.code); });" ]
+  }, {
+    "category" : "Positive",
+    "name" : "[POSITIVE] GET /orders",
+    "description" : "Happy path: valid request should return 200",
+    "request" : {
+      "method" : "GET",
+      "url" : "{{baseUrl}}/orders",
+      "path" : [ "orders" ],
+      "headers" : { },
+      "body" : null
+    },
+    "assertions" : [ "pm.test(\"Status code is 200\", function() { if(pm.response.code !== 200) throw new Error(\"Expected 200 but got \" + pm.response.code); });" ]
+  }, {
+    "category" : "Positive",
+    "name" : "[POSITIVE] POST /orders",
+    "description" : "Happy path: valid request should return 201",
+    "request" : {
+      "method" : "POST",
+      "url" : "{{baseUrl}}/orders",
+      "path" : [ "orders" ],
+      "headers" : { },
+      "body" : null
+    },
+    "assertions" : [ "pm.test(\"Status code is 201\", function() { if(pm.response.code !== 201) throw new Error(\"Expected 201 but got \" + pm.response.code); });" ]
+  }, {
+    "category" : "Positive",
+    "name" : "[POSITIVE] GET /orders/{orderId}",
+    "description" : "Happy path: valid request should return 200",
+    "request" : {
+      "method" : "GET",
+      "url" : "{{baseUrl}}/orders/{orderId}",
+      "path" : [ "orders", "{orderId}" ],
+      "headers" : { },
+      "body" : null
+    },
+    "assertions" : [ "pm.test(\"Status code is 200\", function() { if(pm.response.code !== 200) throw new Error(\"Expected 200 but got \" + pm.response.code); });" ]
+  }, {
+    "category" : "Positive",
+    "name" : "[POSITIVE] POST /orders/{orderId}/cancel",
+    "description" : "Happy path: valid request should return 200",
+    "request" : {
+      "method" : "POST",
+      "url" : "{{baseUrl}}/orders/{orderId}/cancel",
+      "path" : [ "orders", "{orderId}", "cancel" ],
+      "headers" : { },
+      "body" : null
+    },
+    "assertions" : [ "pm.test(\"Status code is 200\", function() { if(pm.response.code !== 200) throw new Error(\"Expected 200 but got \" + pm.response.code); });" ]
+  }, {
+    "category" : "Positive",
+    "name" : "[POSITIVE] POST /shipments",
+    "description" : "Happy path: valid request should return 201",
+    "request" : {
+      "method" : "POST",
+      "url" : "{{baseUrl}}/shipments",
+      "path" : [ "shipments" ],
+      "headers" : { },
+      "body" : null
+    },
+    "assertions" : [ "pm.test(\"Status code is 201\", function() { if(pm.response.code !== 201) throw new Error(\"Expected 201 but got \" + pm.response.code); });" ]
+  }, {
+    "category" : "Positive",
+    "name" : "[POSITIVE] GET /shipments/{shipmentId}",
+    "description" : "Happy path: valid request should return 200",
+    "request" : {
+      "method" : "GET",
+      "url" : "{{baseUrl}}/shipments/{shipmentId}",
+      "path" : [ "shipments", "{shipmentId}" ],
+      "headers" : { },
+      "body" : null
+    },
+    "assertions" : [ "pm.test(\"Status code is 200\", function() { if(pm.response.code !== 200) throw new Error(\"Expected 200 but got \" + pm.response.code); });" ]
+  }, {
+    "category" : "Positive",
+    "name" : "[POSITIVE] PATCH /shipments/{shipmentId}",
+    "description" : "Happy path: valid request should return 200",
+    "request" : {
+      "method" : "PATCH",
+      "url" : "{{baseUrl}}/shipments/{shipmentId}",
+      "path" : [ "shipments", "{shipmentId}" ],
+      "headers" : { },
+      "body" : null
+    },
+    "assertions" : [ "pm.test(\"Status code is 200\", function() { if(pm.response.code !== 200) throw new Error(\"Expected 200 but got \" + pm.response.code); });" ]
+  }, {
+    "category" : "Negative",
+    "name" : "[NEGATIVE] GET /products",
+    "description" : "Invalid type for parameter search (expected string)",
+    "request" : {
+      "method" : "GET",
+      "url" : "{{baseUrl}}/products",
+      "path" : [ "products" ],
+      "headers" : { },
+      "body" : null
+    },
+    "assertions" : [ "pm.test(\"Status code is 400\", function() { if(pm.response.code !== 400) throw new Error(\"Expected 400 but got \" + pm.response.code); });" ]
+  }, {
+    "category" : "Negative",
+    "name" : "[NEGATIVE] GET /products/{productId}",
+    "description" : "Missing required path parameter: productId",
+    "request" : {
+      "method" : "GET",
+      "url" : "{{baseUrl}}/products/{productId}",
+      "path" : [ "products", "{productId}" ],
+      "headers" : { },
+      "body" : null
+    },
+    "assertions" : [ "pm.test(\"Status code is 400\", function() { if(pm.response.code !== 400) throw new Error(\"Expected 400 but got \" + pm.response.code); });" ]
+  }, {
+    "category" : "Negative",
+    "name" : "[NEGATIVE] GET /products/{productId}",
+    "description" : "Invalid type for parameter productId (expected integer)",
+    "request" : {
+      "method" : "GET",
+      "url" : "{{baseUrl}}/products/{productId}",
+      "path" : [ "products", "{productId}" ],
+      "headers" : { },
+      "body" : null
+    },
+    "assertions" : [ "pm.test(\"Status code is 400\", function() { if(pm.response.code !== 400) throw new Error(\"Expected 400 but got \" + pm.response.code); });" ]
+  }, {
+    "category" : "Negative",
+    "name" : "[NEGATIVE] PUT /products/{productId}",
+    "description" : "Missing required path parameter: productId",
+    "request" : {
+      "method" : "PUT",
+      "url" : "{{baseUrl}}/products/{productId}",
+      "path" : [ "products", "{productId}" ],
+      "headers" : { },
+      "body" : null
+    },
+    "assertions" : [ "pm.test(\"Status code is 400\", function() { if(pm.response.code !== 400) throw new Error(\"Expected 400 but got \" + pm.response.code); });" ]
+  }, {
+    "category" : "Negative",
+    "name" : "[NEGATIVE] PUT /products/{productId}",
+    "description" : "Invalid type for parameter productId (expected integer)",
+    "request" : {
+      "method" : "PUT",
+      "url" : "{{baseUrl}}/products/{productId}",
+      "path" : [ "products", "{productId}" ],
+      "headers" : { },
+      "body" : null
+    },
+    "assertions" : [ "pm.test(\"Status code is 400\", function() { if(pm.response.code !== 400) throw new Error(\"Expected 400 but got \" + pm.response.code); });" ]
+  }, {
+    "category" : "Negative",
+    "name" : "[NEGATIVE] DELETE /products/{productId}",
+    "description" : "Missing required path parameter: productId",
+    "request" : {
+      "method" : "DELETE",
+      "url" : "{{baseUrl}}/products/{productId}",
+      "path" : [ "products", "{productId}" ],
+      "headers" : { },
+      "body" : null
+    },
+    "assertions" : [ "pm.test(\"Status code is 400\", function() { if(pm.response.code !== 400) throw new Error(\"Expected 400 but got \" + pm.response.code); });" ]
+  }, {
+    "category" : "Negative",
+    "name" : "[NEGATIVE] DELETE /products/{productId}",
+    "description" : "Invalid type for parameter productId (expected integer)",
+    "request" : {
+      "method" : "DELETE",
+      "url" : "{{baseUrl}}/products/{productId}",
+      "path" : [ "products", "{productId}" ],
+      "headers" : { },
+      "body" : null
+    },
+    "assertions" : [ "pm.test(\"Status code is 400\", function() { if(pm.response.code !== 400) throw new Error(\"Expected 400 but got \" + pm.response.code); });" ]
+  }, {
+    "category" : "Negative",
+    "name" : "[NEGATIVE] GET /warehouses/{warehouseId}",
+    "description" : "Missing required path parameter: warehouseId",
+    "request" : {
+      "method" : "GET",
+      "url" : "{{baseUrl}}/warehouses/{warehouseId}",
+      "path" : [ "warehouses", "{warehouseId}" ],
+      "headers" : { },
+      "body" : null
+    },
+    "assertions" : [ "pm.test(\"Status code is 400\", function() { if(pm.response.code !== 400) throw new Error(\"Expected 400 but got \" + pm.response.code); });" ]
+  }, {
+    "category" : "Negative",
+    "name" : "[NEGATIVE] GET /warehouses/{warehouseId}",
+    "description" : "Invalid type for parameter warehouseId (expected integer)",
+    "request" : {
+      "method" : "GET",
+      "url" : "{{baseUrl}}/warehouses/{warehouseId}",
+      "path" : [ "warehouses", "{warehouseId}" ],
+      "headers" : { },
+      "body" : null
+    },
+    "assertions" : [ "pm.test(\"Status code is 400\", function() { if(pm.response.code !== 400) throw new Error(\"Expected 400 but got \" + pm.response.code); });" ]
+  }, {
+    "category" : "Negative",
+    "name" : "[NEGATIVE] GET /inventory",
+    "description" : "Invalid type for parameter warehouseId (expected integer)",
+    "request" : {
+      "method" : "GET",
+      "url" : "{{baseUrl}}/inventory",
+      "path" : [ "inventory" ],
+      "headers" : { },
+      "body" : null
+    },
+    "assertions" : [ "pm.test(\"Status code is 400\", function() { if(pm.response.code !== 400) throw new Error(\"Expected 400 but got \" + pm.response.code); });" ]
+  }, {
+    "category" : "Negative",
+    "name" : "[NEGATIVE] GET /orders",
+    "description" : "Invalid type for parameter status (expected string)",
+    "request" : {
+      "method" : "GET",
+      "url" : "{{baseUrl}}/orders",
+      "path" : [ "orders" ],
+      "headers" : { },
+      "body" : null
+    },
+    "assertions" : [ "pm.test(\"Status code is 400\", function() { if(pm.response.code !== 400) throw new Error(\"Expected 400 but got \" + pm.response.code); });" ]
+  }, {
+    "category" : "Negative",
+    "name" : "[NEGATIVE] GET /orders/{orderId}",
+    "description" : "Missing required path parameter: orderId",
+    "request" : {
+      "method" : "GET",
+      "url" : "{{baseUrl}}/orders/{orderId}",
+      "path" : [ "orders", "{orderId}" ],
+      "headers" : { },
+      "body" : null
+    },
+    "assertions" : [ "pm.test(\"Status code is 400\", function() { if(pm.response.code !== 400) throw new Error(\"Expected 400 but got \" + pm.response.code); });" ]
+  }, {
+    "category" : "Negative",
+    "name" : "[NEGATIVE] GET /orders/{orderId}",
+    "description" : "Invalid type for parameter orderId (expected integer)",
+    "request" : {
+      "method" : "GET",
+      "url" : "{{baseUrl}}/orders/{orderId}",
+      "path" : [ "orders", "{orderId}" ],
+      "headers" : { },
+      "body" : null
+    },
+    "assertions" : [ "pm.test(\"Status code is 400\", function() { if(pm.response.code !== 400) throw new Error(\"Expected 400 but got \" + pm.response.code); });" ]
+  }, {
+    "category" : "Negative",
+    "name" : "[NEGATIVE] POST /orders/{orderId}/cancel",
+    "description" : "Missing required path parameter: orderId",
+    "request" : {
+      "method" : "POST",
+      "url" : "{{baseUrl}}/orders/{orderId}/cancel",
+      "path" : [ "orders", "{orderId}", "cancel" ],
+      "headers" : { },
+      "body" : null
+    },
+    "assertions" : [ "pm.test(\"Status code is 400\", function() { if(pm.response.code !== 400) throw new Error(\"Expected 400 but got \" + pm.response.code); });" ]
+  }, {
+    "category" : "Negative",
+    "name" : "[NEGATIVE] POST /orders/{orderId}/cancel",
+    "description" : "Invalid type for parameter orderId (expected integer)",
+    "request" : {
+      "method" : "POST",
+      "url" : "{{baseUrl}}/orders/{orderId}/cancel",
+      "path" : [ "orders", "{orderId}", "cancel" ],
+      "headers" : { },
+      "body" : null
+    },
+    "assertions" : [ "pm.test(\"Status code is 400\", function() { if(pm.response.code !== 400) throw new Error(\"Expected 400 but got \" + pm.response.code); });" ]
+  }, {
+    "category" : "Negative",
+    "name" : "[NEGATIVE] GET /shipments/{shipmentId}",
+    "description" : "Missing required path parameter: shipmentId",
+    "request" : {
+      "method" : "GET",
+      "url" : "{{baseUrl}}/shipments/{shipmentId}",
+      "path" : [ "shipments", "{shipmentId}" ],
+      "headers" : { },
+      "body" : null
+    },
+    "assertions" : [ "pm.test(\"Status code is 400\", function() { if(pm.response.code !== 400) throw new Error(\"Expected 400 but got \" + pm.response.code); });" ]
+  }, {
+    "category" : "Negative",
+    "name" : "[NEGATIVE] GET /shipments/{shipmentId}",
+    "description" : "Invalid type for parameter shipmentId (expected integer)",
+    "request" : {
+      "method" : "GET",
+      "url" : "{{baseUrl}}/shipments/{shipmentId}",
+      "path" : [ "shipments", "{shipmentId}" ],
+      "headers" : { },
+      "body" : null
+    },
+    "assertions" : [ "pm.test(\"Status code is 400\", function() { if(pm.response.code !== 400) throw new Error(\"Expected 400 but got \" + pm.response.code); });" ]
+  }, {
+    "category" : "Negative",
+    "name" : "[NEGATIVE] PATCH /shipments/{shipmentId}",
+    "description" : "Missing required path parameter: shipmentId",
+    "request" : {
+      "method" : "PATCH",
+      "url" : "{{baseUrl}}/shipments/{shipmentId}",
+      "path" : [ "shipments", "{shipmentId}" ],
+      "headers" : { },
+      "body" : null
+    },
+    "assertions" : [ "pm.test(\"Status code is 400\", function() { if(pm.response.code !== 400) throw new Error(\"Expected 400 but got \" + pm.response.code); });" ]
+  }, {
+    "category" : "Negative",
+    "name" : "[NEGATIVE] PATCH /shipments/{shipmentId}",
+    "description" : "Invalid type for parameter shipmentId (expected integer)",
+    "request" : {
+      "method" : "PATCH",
+      "url" : "{{baseUrl}}/shipments/{shipmentId}",
+      "path" : [ "shipments", "{shipmentId}" ],
+      "headers" : { },
+      "body" : null
+    },
+    "assertions" : [ "pm.test(\"Status code is 400\", function() { if(pm.response.code !== 400) throw new Error(\"Expected 400 but got \" + pm.response.code); });" ]
+  }, {
+    "category" : "Performance",
+    "name" : "[PERFORMANCE] POST /auth/login",
+    "description" : "Performance: response time should be < 2000ms",
+    "request" : {
+      "method" : "POST",
+      "url" : "{{baseUrl}}/auth/login",
+      "path" : [ "auth", "login" ],
+      "headers" : { },
+      "body" : null
+    },
+    "assertions" : [ "pm.test(\"Response time < 2000 ms\", function() { if(pm.response.responseTime > 2000) throw new Error(\"Response time \" + pm.response.responseTime + \"ms exceeds 2000ms\"); });" ]
+  }, {
+    "category" : "Performance",
+    "name" : "[PERFORMANCE] GET /products",
+    "description" : "Performance: response time should be < 2000ms",
+    "request" : {
+      "method" : "GET",
+      "url" : "{{baseUrl}}/products",
+      "path" : [ "products" ],
+      "headers" : { },
+      "body" : null
+    },
+    "assertions" : [ "pm.test(\"Response time < 2000 ms\", function() { if(pm.response.responseTime > 2000) throw new Error(\"Response time \" + pm.response.responseTime + \"ms exceeds 2000ms\"); });" ]
+  }, {
+    "category" : "Performance",
+    "name" : "[PERFORMANCE] POST /products",
+    "description" : "Performance: response time should be < 2000ms",
+    "request" : {
+      "method" : "POST",
+      "url" : "{{baseUrl}}/products",
+      "path" : [ "products" ],
+      "headers" : { },
+      "body" : null
+    },
+    "assertions" : [ "pm.test(\"Response time < 2000 ms\", function() { if(pm.response.responseTime > 2000) throw new Error(\"Response time \" + pm.response.responseTime + \"ms exceeds 2000ms\"); });" ]
+  }, {
+    "category" : "Performance",
+    "name" : "[PERFORMANCE] GET /products/{productId}",
+    "description" : "Performance: response time should be < 2000ms",
+    "request" : {
+      "method" : "GET",
+      "url" : "{{baseUrl}}/products/{productId}",
+      "path" : [ "products", "{productId}" ],
+      "headers" : { },
+      "body" : null
+    },
+    "assertions" : [ "pm.test(\"Response time < 2000 ms\", function() { if(pm.response.responseTime > 2000) throw new Error(\"Response time \" + pm.response.responseTime + \"ms exceeds 2000ms\"); });" ]
+  }, {
+    "category" : "Performance",
+    "name" : "[PERFORMANCE] PUT /products/{productId}",
+    "description" : "Performance: response time should be < 2000ms",
+    "request" : {
+      "method" : "PUT",
+      "url" : "{{baseUrl}}/products/{productId}",
+      "path" : [ "products", "{productId}" ],
+      "headers" : { },
+      "body" : null
+    },
+    "assertions" : [ "pm.test(\"Response time < 2000 ms\", function() { if(pm.response.responseTime > 2000) throw new Error(\"Response time \" + pm.response.responseTime + \"ms exceeds 2000ms\"); });" ]
+  }, {
+    "category" : "Performance",
+    "name" : "[PERFORMANCE] DELETE /products/{productId}",
+    "description" : "Performance: response time should be < 2000ms",
+    "request" : {
+      "method" : "DELETE",
+      "url" : "{{baseUrl}}/products/{productId}",
+      "path" : [ "products", "{productId}" ],
+      "headers" : { },
+      "body" : null
+    },
+    "assertions" : [ "pm.test(\"Response time < 2000 ms\", function() { if(pm.response.responseTime > 2000) throw new Error(\"Response time \" + pm.response.responseTime + \"ms exceeds 2000ms\"); });" ]
+  }, {
+    "category" : "Performance",
+    "name" : "[PERFORMANCE] GET /warehouses",
+    "description" : "Performance: response time should be < 2000ms",
+    "request" : {
+      "method" : "GET",
+      "url" : "{{baseUrl}}/warehouses",
+      "path" : [ "warehouses" ],
+      "headers" : { },
+      "body" : null
+    },
+    "assertions" : [ "pm.test(\"Response time < 2000 ms\", function() { if(pm.response.responseTime > 2000) throw new Error(\"Response time \" + pm.response.responseTime + \"ms exceeds 2000ms\"); });" ]
+  }, {
+    "category" : "Performance",
+    "name" : "[PERFORMANCE] POST /warehouses",
+    "description" : "Performance: response time should be < 2000ms",
+    "request" : {
+      "method" : "POST",
+      "url" : "{{baseUrl}}/warehouses",
+      "path" : [ "warehouses" ],
+      "headers" : { },
+      "body" : null
+    },
+    "assertions" : [ "pm.test(\"Response time < 2000 ms\", function() { if(pm.response.responseTime > 2000) throw new Error(\"Response time \" + pm.response.responseTime + \"ms exceeds 2000ms\"); });" ]
+  }, {
+    "category" : "Performance",
+    "name" : "[PERFORMANCE] GET /warehouses/{warehouseId}",
+    "description" : "Performance: response time should be < 2000ms",
+    "request" : {
+      "method" : "GET",
+      "url" : "{{baseUrl}}/warehouses/{warehouseId}",
+      "path" : [ "warehouses", "{warehouseId}" ],
+      "headers" : { },
+      "body" : null
+    },
+    "assertions" : [ "pm.test(\"Response time < 2000 ms\", function() { if(pm.response.responseTime > 2000) throw new Error(\"Response time \" + pm.response.responseTime + \"ms exceeds 2000ms\"); });" ]
+  }, {
+    "category" : "Performance",
+    "name" : "[PERFORMANCE] GET /inventory",
+    "description" : "Performance: response time should be < 2000ms",
+    "request" : {
+      "method" : "GET",
+      "url" : "{{baseUrl}}/inventory",
+      "path" : [ "inventory" ],
+      "headers" : { },
+      "body" : null
+    },
+    "assertions" : [ "pm.test(\"Response time < 2000 ms\", function() { if(pm.response.responseTime > 2000) throw new Error(\"Response time \" + pm.response.responseTime + \"ms exceeds 2000ms\"); });" ]
+  }, {
+    "category" : "Performance",
+    "name" : "[PERFORMANCE] POST /inventory/adjustments",
+    "description" : "Performance: response time should be < 2000ms",
+    "request" : {
+      "method" : "POST",
+      "url" : "{{baseUrl}}/inventory/adjustments",
+      "path" : [ "inventory", "adjustments" ],
+      "headers" : { },
+      "body" : null
+    },
+    "assertions" : [ "pm.test(\"Response time < 2000 ms\", function() { if(pm.response.responseTime > 2000) throw new Error(\"Response time \" + pm.response.responseTime + \"ms exceeds 2000ms\"); });" ]
+  }, {
+    "category" : "Performance",
+    "name" : "[PERFORMANCE] GET /orders",
+    "description" : "Performance: response time should be < 2000ms",
+    "request" : {
+      "method" : "GET",
+      "url" : "{{baseUrl}}/orders",
+      "path" : [ "orders" ],
+      "headers" : { },
+      "body" : null
+    },
+    "assertions" : [ "pm.test(\"Response time < 2000 ms\", function() { if(pm.response.responseTime > 2000) throw new Error(\"Response time \" + pm.response.responseTime + \"ms exceeds 2000ms\"); });" ]
+  }, {
+    "category" : "Performance",
+    "name" : "[PERFORMANCE] POST /orders",
+    "description" : "Performance: response time should be < 2000ms",
+    "request" : {
+      "method" : "POST",
+      "url" : "{{baseUrl}}/orders",
+      "path" : [ "orders" ],
+      "headers" : { },
+      "body" : null
+    },
+    "assertions" : [ "pm.test(\"Response time < 2000 ms\", function() { if(pm.response.responseTime > 2000) throw new Error(\"Response time \" + pm.response.responseTime + \"ms exceeds 2000ms\"); });" ]
+  }, {
+    "category" : "Performance",
+    "name" : "[PERFORMANCE] GET /orders/{orderId}",
+    "description" : "Performance: response time should be < 2000ms",
+    "request" : {
+      "method" : "GET",
+      "url" : "{{baseUrl}}/orders/{orderId}",
+      "path" : [ "orders", "{orderId}" ],
+      "headers" : { },
+      "body" : null
+    },
+    "assertions" : [ "pm.test(\"Response time < 2000 ms\", function() { if(pm.response.responseTime > 2000) throw new Error(\"Response time \" + pm.response.responseTime + \"ms exceeds 2000ms\"); });" ]
+  }, {
+    "category" : "Performance",
+    "name" : "[PERFORMANCE] POST /orders/{orderId}/cancel",
+    "description" : "Performance: response time should be < 2000ms",
+    "request" : {
+      "method" : "POST",
+      "url" : "{{baseUrl}}/orders/{orderId}/cancel",
+      "path" : [ "orders", "{orderId}", "cancel" ],
+      "headers" : { },
+      "body" : null
+    },
+    "assertions" : [ "pm.test(\"Response time < 2000 ms\", function() { if(pm.response.responseTime > 2000) throw new Error(\"Response time \" + pm.response.responseTime + \"ms exceeds 2000ms\"); });" ]
+  }, {
+    "category" : "Performance",
+    "name" : "[PERFORMANCE] POST /shipments",
+    "description" : "Performance: response time should be < 2000ms",
+    "request" : {
+      "method" : "POST",
+      "url" : "{{baseUrl}}/shipments",
+      "path" : [ "shipments" ],
+      "headers" : { },
+      "body" : null
+    },
+    "assertions" : [ "pm.test(\"Response time < 2000 ms\", function() { if(pm.response.responseTime > 2000) throw new Error(\"Response time \" + pm.response.responseTime + \"ms exceeds 2000ms\"); });" ]
+  }, {
+    "category" : "Performance",
+    "name" : "[PERFORMANCE] GET /shipments/{shipmentId}",
+    "description" : "Performance: response time should be < 2000ms",
+    "request" : {
+      "method" : "GET",
+      "url" : "{{baseUrl}}/shipments/{shipmentId}",
+      "path" : [ "shipments", "{shipmentId}" ],
+      "headers" : { },
+      "body" : null
+    },
+    "assertions" : [ "pm.test(\"Response time < 2000 ms\", function() { if(pm.response.responseTime > 2000) throw new Error(\"Response time \" + pm.response.responseTime + \"ms exceeds 2000ms\"); });" ]
+  }, {
+    "category" : "Performance",
+    "name" : "[PERFORMANCE] PATCH /shipments/{shipmentId}",
+    "description" : "Performance: response time should be < 2000ms",
+    "request" : {
+      "method" : "PATCH",
+      "url" : "{{baseUrl}}/shipments/{shipmentId}",
+      "path" : [ "shipments", "{shipmentId}" ],
+      "headers" : { },
+      "body" : null
+    },
+    "assertions" : [ "pm.test(\"Response time < 2000 ms\", function() { if(pm.response.responseTime > 2000) throw new Error(\"Response time \" + pm.response.responseTime + \"ms exceeds 2000ms\"); });" ]
+  }, {
+    "category" : "Security",
+    "name" : "[SECURITY] POST /auth/login",
+    "description" : "Missing authentication token",
+    "request" : {
+      "method" : "POST",
+      "url" : "{{baseUrl}}/auth/login",
+      "path" : [ "auth", "login" ],
+      "headers" : { },
+      "body" : null
+    },
+    "assertions" : [ "pm.test(\"Status code is 401\", function() { if(pm.response.code !== 401) throw new Error(\"Expected 401 but got \" + pm.response.code); });" ]
+  } ]
+}
